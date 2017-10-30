@@ -7,7 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+import android.widget.Button;
 
 import java.util.Random;
 
@@ -39,19 +39,27 @@ public class GuruFragment extends Fragment {
     }
 
     private void initTalkButton(View fragmentView) {
-        ImageButton talkButton = fragmentView.findViewById(R.id.talkButton);
+        Button talkButton = fragmentView.findViewById(R.id.talkButton);
         talkButton.setOnClickListener((View view) -> {
+            talkButton.setEnabled(false);
             MediaPlayer mediaPlayer;
-            int answer = new Random().nextInt() % 2;
-            switch (answer) {
+            int audio;
+            switch (Math.abs(new Random().nextInt()) % 3) {
                 case 0:
-                    mediaPlayer = MediaPlayer.create(getContext(), R.raw.alert);
+                    audio = R.raw.sim;
+                    break;
+                case 1:
+                    audio = R.raw.nao;
                     break;
                 default:
-                    mediaPlayer = MediaPlayer.create(getContext(), R.raw.call);
+                    audio = R.raw.talvez;
             }
+            mediaPlayer = MediaPlayer.create(getContext(), audio);
             mediaPlayer.start();
-            mediaPlayer.setOnCompletionListener((MediaPlayer lMediaPlayer) -> Log.i(TAG, "Played"));
+            mediaPlayer.setOnCompletionListener((MediaPlayer lMediaPlayer) -> {
+                Log.i(TAG, "Played");
+                talkButton.setEnabled(true);
+            });
         });
     }
 
