@@ -46,7 +46,7 @@ public class MainActivity extends Activity {
     private void openGuruFragment() {
         GuruFragment guruFragment = GuruFragment.newInstance();
         getFragmentManager().beginTransaction()
-                .add(android.R.id.content, guruFragment).commit();
+                .replace(R.id.container, guruFragment).commit();
     }
 
     private void openAboutFragment() {
@@ -62,7 +62,7 @@ public class MainActivity extends Activity {
                         R.animator.card_flip_right_out,
                         R.animator.card_flip_left_in,
                         R.animator.card_flip_left_out)
-                .replace(android.R.id.content, new AboutFragment())
+                .replace(R.id.container, new AboutFragment())
                 .addToBackStack(null)
                 .commit();
     }
