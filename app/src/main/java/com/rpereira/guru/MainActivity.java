@@ -16,9 +16,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         if(savedInstanceState == null) {
-            GuruFragment guruFragment = GuruFragment.newInstance();
-            getFragmentManager().beginTransaction()
-                    .add(android.R.id.content, guruFragment).commit();
+            openGuruFragment();
         }
 
     }
@@ -36,16 +34,36 @@ public class MainActivity extends Activity {
         switch (id) {
             case R.id.about:
                 Log.i(TAG, "about selected");
-                getFragmentManager().beginTransaction()
-                        .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
-                        .replace(android.R.id.content, new AboutFragment())
-                        .addToBackStack(null)
-                        .commit();
+                openAboutFragment();
                 return true;
 
             default:
                 Log.i(TAG, "about selected");
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void openGuruFragment() {
+        GuruFragment guruFragment = GuruFragment.newInstance();
+        getFragmentManager().beginTransaction()
+                .add(android.R.id.content, guruFragment).commit();
+    }
+
+    private void openAboutFragment() {
+        if (getFragmentManager().getBackStackEntryCount() > 0) {
+            getFragmentManager().popBackStack();
+            return;
+        }
+
+        getFragmentManager()
+                .beginTransaction()
+                .setCustomAnimations(
+                        R.animator.card_flip_right_in,
+                        R.animator.card_flip_right_out,
+                        R.animator.card_flip_left_in,
+                        R.animator.card_flip_left_out)
+                .replace(android.R.id.content, new AboutFragment())
+                .addToBackStack(null)
+                .commit();
     }
 }

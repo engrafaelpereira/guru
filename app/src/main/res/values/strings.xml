@@ -1,11 +1,10 @@
 <resources>
     <string name="app_name">Guru</string>
-    <string name="talk_button">press</string>
+    <string name="talk_button">reveal your secrets</string>
     <string name="about">About</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="about_text">App Guru</string>
     <string name="app_version">1.0.0</string>
+    <string name="signature">Rafael F Pereira</string>
 
 </resources>

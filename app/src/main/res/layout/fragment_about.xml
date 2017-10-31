@@ -10,19 +10,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:id="@+id/textView"
+        android:id="@+id/appNameTextView"
         android:textAlignment="center"
         android:textSize="24sp"
         android:gravity="center"/>
 
     <TextView
+        android:id="@+id/signatureTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/appNameTextView"
+        android:layout_centerHorizontal="true"
+        android:text="@string/signature" />
+
+    <TextView
         android:text="@string/app_version"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2"
+        android:id="@+id/versionTextView"
         android:textSize="12sp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_margin="10dp"/>
+
 
 </RelativeLayout>
