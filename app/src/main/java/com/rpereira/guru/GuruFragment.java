@@ -56,9 +56,16 @@ public class GuruFragment extends Fragment {
             }
             mediaPlayer = MediaPlayer.create(getContext(), audio);
             mediaPlayer.start();
-            mediaPlayer.setOnCompletionListener((MediaPlayer lMediaPlayer) -> {
+            mediaPlayer.setOnCompletionListener((MediaPlayer mp) -> {
                 Log.i(TAG, "Played");
                 talkButton.setEnabled(true);
+                mp.release();
+            });
+            mediaPlayer.setOnErrorListener((MediaPlayer mp, int what, int extra) -> {
+                Log.i(TAG, "Error with mediaPlayer");
+                talkButton.setEnabled(true);
+                mp.release();
+                return true;
             });
         });
     }
